@@ -1,0 +1,131 @@
+<!DOCTYPE html>  
+<html>
+  {% load staticfiles %}  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'pics/logo.png' %}" />
+    <link rel="Bookmark" href="{% static 'pics/logo.png' %}" />
+    <!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
+    <!-- <link href="{% static 'css/hello.css' %}" rel="stylesheet"> -->
+    <!-- <script src="{% static 'js/autocomplete.js' %}"></script> -->
+    <title>Rack Layout</title> 
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+   
+  </head>
+
+
+  <body>
+    <input id="tab-option-input" style="display: none;" value="{{tab}}"/>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+       <!--  <div class="navbar-header">
+          <!-- <h3 class="navbar-text">Device Status</h3> -->
+          <!-- <h3><a href="/labsmith/statusResult/"><h4>Refresh array status</h4></a></h3> -->
+        <!-- </div> --> 
+        <a href="/labsmith/" style="float:left"><h3><u>Labsmith</u></h3></a>
+      </div>  
+    </nav>
+
+
+  <div class="container" style=" display:block">
+    {% csrf_token %}
+       <ul class="nav nav-tabs" id="switchtable">
+          
+          <li role="presentation" id="RACK1-tab-li"><a href="#RACK1" id="RACK1-tab" role="tab" data-toggle="tab">Rack 1</a></li>
+          <li role="presentation" id="RACK2-tab-li"><a href="#RACK2" id="RACK2-tab" role="tab" data-toggle="tab">Rack 2</a></li>
+          <li role="presentation" id="RACK3-tab-li"><a href="#RACK3" id="RACK3-tab" role="tab" data-toggle="tab">Rack 3</a></li>
+          <li role="presentation" id="RACK4-tab-li"><a href="#RACK4" id="RACK4-tab" role="tab" data-toggle="tab">Rack 4</a></li>
+        </ul>
+
+    <div class="tab-content">
+
+          <div id="RACK1" class="tab-pane fade in">
+            <img src="/static/pics/Rack_1.PNG" >
+          </div>
+
+          <div id="RACK2" class="tab-pane fade in">
+            <img src="/static/pics/Rack2.PNG" >
+          </div>
+
+          <div id="RACK3" class="tab-pane fade in">
+            <img src="/static/pics/Rack3.PNG" >
+          </div>
+
+          <div id="RACK4" class="tab-pane fade in">
+            <img src="/static/pics/Rack4.PNG" >
+          </div>
+
+    </div>
+      
+    <!-- <div style="margin:auto">
+
+        <a href="/labsmith"><input id="return-btn" class="btn btn-success" type="button" value="Return" ></a>
+    </div> -->
+
+
+  </div> <!-- /container --> 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script> 
+
+  
+     
+
+      <script language="JavaScript"> 
+        function winload(){ 
+          setTimeout( 
+          function(){ 
+          // alert("111111"); 
+          ld.style.display="none"; 
+            f8=true; 
+            },5000); 
+
+        }
+        // function winload(){ 
+        //  ld.style.display="none"; 
+        //  f8=true;  
+        // }
+
+        window.onload = winload;
+
+
+      </script> 
+      <script type="text/javascript">
+      $(document).ready(function(){
+        var tabOption = $('#tab-option-input').val();
+        if(tabOption == 'Rack 1'){
+          $('#RACK1-tab-li').addClass('active');
+          $('#RACK1').addClass('active');
+        }else if(tabOption == 'Rack 2'){
+          $('#RACK2-tab-li').addClass('active');
+          $('#RACK2').addClass('active');
+        }else if(tabOption == 'Rack 3'){
+          $('#RACK3-tab-li').addClass('active');
+          $('#RACK3').addClass('active');
+        }else if(tabOption == 'Rack 4'){
+          $('#RACK4-tab-li').addClass('active');
+          $('#RACK4').addClass('active');
+        }
+        $(".showspan").click(function(){
+          $(this).parent().children("span.hidespan").show();
+          $(this).parent().children("span.showspan1").hide();
+          $(this).hide();
+        })
+        $(".dropbtn").click(function(){
+          $(this).parent().parent().children("input.form-control").val($(this).parent().parent().parent().parent().children("span.showspan1").text());
+          $(this).parent().parent().parent().parent().children("span.showspan").show();
+          $(this).parent().parent().parent().parent().children("span.showspan1").show();
+          $(this).parent().parent().parent().hide();
+        })
+      });
+    </script>
+ </body>  
+</html> 

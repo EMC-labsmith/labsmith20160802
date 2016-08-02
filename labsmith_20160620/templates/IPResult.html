@@ -1,0 +1,302 @@
+<!DOCTYPE html>  
+<html>
+  {% load staticfiles %}  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'pics/logo.png' %}" />
+    <link rel="Bookmark" href="{% static 'pics/logo.png' %}" />
+    <!-- <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> -->
+    <!-- <link href="{% static 'css/hello.css' %}" rel="stylesheet"> -->
+    <!-- <script src="{% static 'js/autocomplete.js' %}"></script> -->
+    <title>IP result</title> 
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+   
+  </head>
+
+
+  <body>
+    <input id="tab-option-input" style="display: none;" value="{{tab}}"/>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+       <!--  <div class="navbar-header">
+          <!-- <h3 class="navbar-text">Device Status</h3> -->
+          <!-- <h3><a href="/labsmith/statusResult/"><h4>Refresh array status</h4></a></h3> -->
+        <!-- </div> --> 
+        <a href="/labsmith/" style="float:left"><h3><u>Labsmith</u></h3></a>
+      </div>  
+    </nav>
+
+
+  <div class="container" style=" display:block">
+    {% csrf_token %}
+       <ul class="nav nav-tabs" id="switchtable">
+          
+          <li role="presentation" id="OB-tab-li"><a href="#OB" id="OB-tab" role="tab" data-toggle="tab" target="_blank">Oberon</a></li>
+          <li role="presentation" id="BC-tab-li"><a href="#BC" id="BC-tab" role="tab" data-toggle="tab">Beachcomber</a></li>
+          <li role="presentation" id="BEARCAT-tab-li"><a href="#BEARCAT" id="BEARCAT-tab" role="tab" data-toggle="tab">Bearcat</a></li>
+          <li role="presentation" id="ROCKIES-tab-li"><a href="#ROCKIES" id="ROCKIES-tab" role="tab" data-toggle="tab">Rockies</a></li>
+          <li role="presentation" id="ROCKIES-tab-li"><a href="#SERVER" id="SERVER-tab" role="tab" data-toggle="tab">Server</a></li>
+          <!-- <a href="/labsmith/statusResult/"><button type="button" class="btn-success" style="float:right" title="Refresh array status"><span class="glyphicon glyphicon-refresh"></span></button></a> -->
+        </ul>
+
+    <div class="tab-content">
+    <div id="OB" class="tab-pane fade in">
+      <table class="table table-hover navbar-text">
+        <thead>
+          <tr>
+            <th style="width:5%">No.</th>
+            <th style="width:15%">Name</th>
+            <th style="width:18%">Spa</th>
+            <th style="width:18%">Spb</th>
+            <th style="width:18%">Spa BMC</th>
+            <th style="width:16%">Spb BMC</th>
+            <th style="width:25%">Mgmt</th>
+  
+          </tr>
+        </thead> 
+        <tbody >
+             {% for ip in ip1 %}
+              <tr>
+                <td>{{forloop.counter}} </td>
+                <td>{{ip.name}} </td> <!--1-->
+                <td>{{ip.spa_ip}} </td> <!--2-->
+                <td>{{ip.spb_ip}} </td><!--3-->
+                <td>{{ip.bmc_spa_ip}} </td><!--4-->
+                <td>{{ip.bmc_spb_ip}} </td><!--5-->
+                <td>{{ip.mgmt_ip}} </td><!--6-->
+              </tr>
+              {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+      <div id="BC" class="tab-pane fade in">
+      <table class="table table-hover navbar-text">
+        <thead>
+          <tr>
+            <th style="width:5%">No.</th>
+            <th style="width:15%">Name</th>
+            <th style="width:18%">Spa</th>
+            <th style="width:18%">Spb</th>
+            <th style="width:18%">Spa BMC</th>
+            <th style="width:16%">Spb BMC</th>
+            <th style="width:25%">Mgmt</th>
+        
+          </tr>
+        </thead> 
+        <tbody>
+              {% for ip in ip2 %}
+              <tr>
+                <td>{{forloop.counter}} </td>
+                <td>{{ip.name}} </td> <!--1-->
+                <td>{{ip.spa_ip}} </td> <!--2-->
+                <td>{{ip.spb_ip}} </td><!--3-->
+                <td>{{ip.bmc_spa_ip}} </td><!--4-->
+                <td>{{ip.bmc_spb_ip}} </td><!--5-->
+                <td>{{ip.mgmt_ip}} </td><!--6-->
+              </tr>
+              {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div id="ROCKIES" class="tab-pane fade in">
+      <table class="table table-hover navbar-text">
+        <thead>
+          <tr>
+            <th style="width:5%">No.</th>
+            <th style="width:15%">Name</th>
+            <th style="width:18%">Spa</th>
+            <th style="width:18%">Spb</th>
+            <th style="width:18%">Cs0</th>
+            <th style="width:16%">Cs1</th>
+            <th style="width:25%">Hostpc</th>
+          
+          </tr>
+        </thead> 
+        <tbody>
+              {% for ip in ip3 %}
+              <tr>
+                <td>{{forloop.counter}} </td>
+                <td>{{ip.name}} </td> <!--1-->
+                <td>{{ip.spa_ip}} </td> <!--2-->
+                <td>{{ip.spb_ip}} </td><!--3-->
+                <td>{{ip.cs0_ip}} </td><!--4-->
+                <td>{{ip.cs1_ip}} </td><!--5-->
+                <td>{{ip.hostpc_ip}} </td><!--6-->
+              </tr>
+              {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+<div id="BEARCAT" class="tab-pane fade in">
+      <table class="table table-hover navbar-text">
+        <thead>
+          <tr>
+            <th style="width:5%">No.</th>
+            <th style="width:15%">Name</th>
+            <th style="width:18%">Spa</th>
+            <th style="width:18%">Spb</th>
+            <th style="width:18%">Spa BMC</th>
+            <th style="width:16%">Spb BMC</th>
+            <th style="width:25%">Mgmt</th>
+         
+          </tr>
+        </thead> 
+        <tbody>
+              {% for ip in ip4 %}
+              <tr>
+                <td>{{forloop.counter}} </td>
+                <td>{{ip.name}} </td> <!--1-->
+                <td>{{ip.spa_ip}} </td> <!--2-->
+                <td>{{ip.spb_ip}} </td><!--3-->
+                <td>{{ip.bmc_spa_ip}} </td><!--4-->
+                <td>{{ip.bmc_spb_ip}} </td><!--5-->
+                <td>{{ip.mgmt_ip}} </td><!--6-->
+              </tr>
+              {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+        <div id="SERVER" class="tab-pane fade in">
+      <table class="table table-hover navbar-text" id="tabserver">
+        <thead>
+          <tr>
+            <!-- <th style="width:5%">No.</th> -->
+            <th style="width:8%">Name</th>
+            <th style="width:10%">IP</th>
+            <th style="width:18%">Port</th>
+            <th style="width:18%">Port Ip</th>
+            <th style="width:18%">OS</th>
+            <th style="width:18%">Vendor model name </th>
+            <th style="width:18%">VMS</th>
+          </tr>
+        </thead> 
+        <tbody>
+              {% for ip in ip5 %}
+              <tr>
+                <!-- <td>{{forloop.counter}} </td> -->
+                <td>{{ip.name}} </td> <!--2-->
+                <td style="border-right:1px solid #d0d0d0">{{ip.hostpc_ip}} </td> 
+                <td>{{ip.port}} 
+                  {% ifequal ip.owner None %}
+                    {% ifequal ip.lock True %}  
+                      <span class="glyphicon glyphicon-lock" title="This device is locked, please contact the User to reserve."></span>
+                    {% endifequal %}
+                  {% endifequal %}</td>
+                </td>
+                <td>{{ip.port_ip}} </td>
+                <td>{{ip.server_os}} </td><!--4-->
+                <td>{{ip.vendor_model_name}} </td>
+                <td>{{ip.server_vms}} </td><!--5-->
+              </tr>
+              {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+      
+    <div style="margin:auto">
+        <a href="/labsmith"><input id="return-btn" class="btn btn-success" type="button" value="Back" ></a>
+    </div>
+
+
+  </div> <!-- /container --> 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script> 
+
+  
+     
+
+      <script language="JavaScript"> 
+        function winload(){ 
+          setTimeout( 
+          function(){ 
+          // alert("111111"); 
+          ld.style.display="none"; 
+            f8=true; 
+            },5000); 
+
+        }
+        // function winload(){ 
+        //  ld.style.display="none"; 
+        //  f8=true;  
+        // }
+
+        window.onload = winload;
+
+
+      </script> 
+      <script type="text/javascript">
+      $(document).ready(function(){
+        var tabOption = $('#tab-option-input').val();
+        if(tabOption == 'Oberon'){
+          $('#OB-tab-li').addClass('active');
+          $('#OB').addClass('active');
+        }else if(tabOption == 'Beachcomber'){
+          $('#BC-tab-li').addClass('active');
+          $('#BC').addClass('active');
+        }else if(tabOption == 'Rockies'){
+          $('#ROCKIES-tab-li').addClass('active');
+          $('#ROCKIES').addClass('active');
+        }else if(tabOption == 'Bearcat'){
+          $('#BEARCAT-tab-li').addClass('active');
+          $('#BEARCAT').addClass('active');
+        }
+        $(".showspan").click(function(){
+          $(this).parent().children("span.hidespan").show();
+          $(this).parent().children("span.showspan1").hide();
+          $(this).hide();
+        })
+        $(".dropbtn").click(function(){
+          $(this).parent().parent().children("input.form-control").val($(this).parent().parent().parent().parent().children("span.showspan1").text());
+          $(this).parent().parent().parent().parent().children("span.showspan").show();
+          $(this).parent().parent().parent().parent().children("span.showspan1").show();
+          $(this).parent().parent().parent().hide();
+        })
+      });
+    </script>
+        <script type="text/javascript"> 
+       
+         function _w_table_rowspan(_w_table_id,_w_table_colnum){
+          _w_table_firsttd = "";
+          _w_table_currenttd = "";
+          _w_table_SpanNum = 0;
+          _w_table_Obj = $(_w_table_id + " tr td:nth-child(" + _w_table_colnum + ")");
+          _w_table_Obj.each(function(i){
+            if(i==0){
+              _w_table_firsttd = $(this);
+              _w_table_SpanNum = 1;
+            }else{
+              _w_table_currenttd = $(this);
+              if(_w_table_firsttd.text()==_w_table_currenttd.text()){
+                _w_table_SpanNum++;
+                _w_table_currenttd.hide(); //remove();
+                _w_table_firsttd.attr("rowSpan",_w_table_SpanNum);
+              }else{
+                _w_table_firsttd = $(this);
+                _w_table_SpanNum = 1;
+              }
+            }
+          }); 
+        }
+        $(document).ready(function(){ 
+         // _w_table_rowspan("#process",4);
+         // _w_table_rowspan("#process",3);
+         _w_table_rowspan("#tabserver",2);
+         _w_table_rowspan("#tabserver",1);
+ });
+        </script> 
+ </body>  
+</html> 
