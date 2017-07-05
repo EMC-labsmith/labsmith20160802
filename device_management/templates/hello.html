@@ -233,11 +233,9 @@
               {% ifequal device.isalive True %}
               <tr>
                 <td><a href="{{device.link}}" target="_blank">{{device.name}} </a>
-                 {% ifequal device.owner None %}
-                   {% ifequal device.lock True %}  
+                   {% ifequal device.lock True %}
                      <span class="glyphicon glyphicon-lock" title="This device is locked, please contact the User to reserve."></span>
                    {% endifequal %}
-                 {% endifequal %}</td> <!--1-->
                 <td><span class="hold-time devices1">{{device.holdingTime}}</span></td>
                 <td> </td>
                 {% ifequal device.owner currentuser %}
@@ -294,22 +292,21 @@
             </td>
 			
             <td> <!--5-->
-              
-              {% if device.owner  %}
-                {% ifequal device.owner currentuser %}
-                  <a href="result?id={{device.id}}&action=2&tab=Oberon" style="text-decoration: none"><button class="btn btn-primary btn-block" type="button">release</button></a>
-                  <!--a href="result?id={{device.id}}&action=2" style="text-decoration: none"><button class="btn btn-primary btn-block" type="button">release</button></a-->
-                {% else %}
-                  <a href="result?id={{device.id}}&action=1&tab=Oberon" style="text-decoration: none"><button class="btn btn-warning btn-block" type="button">want</button></a>
-                {% endifequal %}
+              {% ifequal device.lock True %}
+                   <button class="btn btn-success btn-block" disabled="disabled" type="button">locked</button>
               {% else %}
-                  {% ifequal device.lock True %}  
-                   <button class="btn btn-success btn-block" disabled="disabled" type="button">reserve</button>
-                   {% else %}
-                   <a href="result?id={{device.id}}&action=0&tab=Oberon" style="text-decoration: none"><button class="btn btn-success btn-block" type="button">reserve</button></a>
+                {% if device.owner%}
+                  {% ifequal device.owner currentuser %}
+                    <a href="result?id={{device.id}}&action=2&tab=Oberon" style="text-decoration: none"><button class="btn btn-primary btn-block" type="button">release</button></a>
+                    <!--a href="result?id={{device.id}}&action=2" style="text-decoration: none"><button class="btn btn-primary btn-block" type="button">release</button></a-->
+                  {% else %}
+                    <a href="result?id={{device.id}}&action=1&tab=Oberon" style="text-decoration: none"><button class="btn btn-warning btn-block" type="button">want</button></a>
                   {% endifequal %}
+                {% else %}
+                   <a href="result?id={{device.id}}&action=0&tab=Oberon" style="text-decoration: none"><button class="btn btn-success btn-block" type="button">reserve</button></a>
                   <!-- <a href="result?id={{device.id}}&action=0&tab=Oberon" style="text-decoration: none"><button class="btn btn-success btn=block" type="button">reserv</button></a> -->
-              {% endif %}                            
+                {% endif %}
+              {% endifequal %}
             </td>
 			
             <td>  <!--6-->
