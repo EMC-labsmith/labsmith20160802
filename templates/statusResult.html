@@ -41,7 +41,7 @@
           <li role="presentation" id="OB-tab-li"><a href="#OB" id="OB-tab" role="tab" data-toggle="tab" target="_blank">Oberon</a></li>
           <!-- <li role="presentation" id="BEARCAT-tab-li"><a href="#BEARCAT" id="BEARCAT-tab" role="tab" data-toggle="tab">Bearcat</a></li> -->
           <li role="presentation" id="BC-tab-li"><a href="#BC" id="BC-tab" role="tab" data-toggle="tab">Beachcomber</a></li>
-          <a href="/labsmith/statusResult/"><button type="button" class="btn-success" style="float:right" title="Refresh array status"><span class="glyphicon glyphicon-refresh"></span></button></a>
+          <a href="/labsmith/statusResult/"><button type="button" class="btn btn-success" style="float:right" title="Refresh array status"><span class="glyphicon glyphicon-refresh"></span></button></a>
         </ul>
 
     <div class="tab-content">
@@ -55,31 +55,52 @@
             
           </tr>
         </thead> 
-        <tbody >
-              <tr><td>{{name_OB.0}}</td><td>{{Ip_OB.0}}</td><td>{{Status_OB.0}}</td></tr> 
+        <tbody id=mytable_oberon>
               <tr><td>{{name_OB.1}}</td><td>{{Ip_OB.1}}</td><td>{{Status_OB.1}}</td></tr> 
-              <tr><td>{{name_OB.2}}</td><td>{{Ip_OB.2}}</td><td>{{Status_OB.2}}</td></tr> 
-              <tr><td>{{name_OB.3}}</td><td>{{Ip_OB.3}}</td><td>{{Status_OB.3}}</td></tr> 
+              <tr><td>{{name_OB.2}}</td><td>{{Ip_OB.2}}</td><td>{{Status_OB.2}}</td></tr>
+              <tr><td>{{name_OB.0}}</td><td>{{Ip_OB.0}}</td><td>{{Status_OB.0}}</td></tr> 
               <tr><td>{{name_OB.4}}</td><td>{{Ip_OB.4}}</td><td>{{Status_OB.4}}</td></tr> 
               <tr><td>{{name_OB.5}}</td><td>{{Ip_OB.5}}</td><td>{{Status_OB.5}}</td></tr> 
-              <tr><td>{{name_OB.6}}</td><td>{{Ip_OB.6}}</td><td>{{Status_OB.6}}</td></tr> 
+              <tr><td>{{name_OB.3}}</td><td>{{Ip_OB.3}}</td><td>{{Status_OB.3}}</td></tr> 
               <tr><td>{{name_OB.7}}</td><td>{{Ip_OB.7}}</td><td>{{Status_OB.7}}</td></tr> 
               <tr><td>{{name_OB.8}}</td><td>{{Ip_OB.8}}</td><td>{{Status_OB.8}}</td></tr> 
-              <tr><td>{{name_OB.9}}</td><td>{{Ip_OB.9}}</td><td>{{Status_OB.9}}</td></tr> 
+              <tr><td>{{name_OB.6}}</td><td>{{Ip_OB.6}}</td><td>{{Status_OB.6}}</td></tr> 
               <tr><td>{{name_OB.10}}</td><td>{{Ip_OB.10}}</td><td>{{Status_OB.10}}</td></tr> 
               <tr><td>{{name_OB.11}}</td><td>{{Ip_OB.11}}</td><td>{{Status_OB.11}}</td></tr> 
-              <tr><td>{{name_OB.12}}</td><td>{{Ip_OB.12}}</td><td>{{Status_OB.12}}</td></tr> 
+              <tr><td>{{name_OB.9}}</td><td>{{Ip_OB.9}}</td><td>{{Status_OB.9}}</td></tr> 
               <tr><td>{{name_OB.13}}</td><td>{{Ip_OB.13}}</td><td>{{Status_OB.13}}</td></tr> 
               <tr><td>{{name_OB.14}}</td><td>{{Ip_OB.14}}</td><td>{{Status_OB.14}}</td></tr> 
-              <tr><td>{{name_OB.15}}</td><td>{{Ip_OB.15}}</td><td>{{Status_OB.15}}</td></tr> 
+              <tr><td>{{name_OB.12}}</td><td>{{Ip_OB.12}}</td><td>{{Status_OB.12}}</td></tr> 
               <tr><td>{{name_OB.16}}</td><td>{{Ip_OB.16}}</td><td>{{Status_OB.16}}</td></tr> 
               <tr><td>{{name_OB.17}}</td><td>{{Ip_OB.17}}</td><td>{{Status_OB.17}}</td></tr> 
-              <tr><td>{{name_OB.18}}</td><td>{{Ip_OB.18}}</td><td>{{Status_OB.18}}</td></tr> 
+              <tr><td>{{name_OB.15}}</td><td>{{Ip_OB.15}}</td><td>{{Status_OB.15}}</td></tr> 
               <tr><td>{{name_OB.19}}</td><td>{{Ip_OB.19}}</td><td>{{Status_OB.19}}</td></tr> 
-              <tr><td>{{name_OB.20}}</td><td>{{Ip_OB.20}}</td><td>{{Status_OB.20}}</td></tr> 
-              <tr><td>{{name_OB.21}}</td><td>{{Ip_OB.21}}</td><td>{{Status_OB.21}}</td></tr> 
+              <tr><td>{{name_OB.20}}</td><td>{{Ip_OB.20}}</td><td>{{Status_OB.20}}</td></tr>
+              <tr><td>{{name_OB.18}}</td><td>{{Ip_OB.18}}</td><td>{{Status_OB.18}}</td></tr> 
               <tr><td>{{name_OB.22}}</td><td>{{Ip_OB.22}}</td><td>{{Status_OB.22}}</td></tr> 
-              <tr><td>{{name_OB.23}}</td><td>{{Ip_OB.23}}</td><td>{{Status_OB.23}}</td></tr> 
+              <tr><td>{{name_OB.23}}</td><td>{{Ip_OB.23}}</td><td>{{Status_OB.23}}</td></tr>
+              <tr><td>{{name_OB.21}}</td><td>{{Ip_OB.21}}</td><td>{{Status_OB.21}}</td></tr> 
+              <tr><td>{{name_OB.25}}</td><td>{{Ip_OB.25}}</td><td>{{Status_OB.25}}</td></tr>
+              <tr><td>{{name_OB.26}}</td><td>{{Ip_OB.26}}</td><td>{{Status_OB.26}}</td></tr>
+              <tr><td>{{name_OB.24}}</td><td>{{Ip_OB.24}}</td><td>{{Status_OB.24}}</td></tr>
+              <tr><td>{{name_OB.28}}</td><td>{{Ip_OB.28}}</td><td>{{Status_OB.28}}</td></tr>
+              <tr><td>{{name_OB.29}}</td><td>{{Ip_OB.29}}</td><td>{{Status_OB.29}}</td></tr>
+              <tr><td>{{name_OB.27}}</td><td>{{Ip_OB.27}}</td><td>{{Status_OB.27}}</td></tr>
+              <tr><td>{{name_OB.31}}</td><td>{{Ip_OB.16}}</td><td>{{Status_OB.16}}</td></tr>
+              <tr><td>{{name_OB.32}}</td><td>{{Ip_OB.17}}</td><td>{{Status_OB.17}}</td></tr>
+              <tr><td>{{name_OB.30}}</td><td>{{Ip_OB.15}}</td><td>{{Status_OB.15}}</td></tr>
+              <tr><td>{{name_OB.34}}</td><td>{{Ip_OB.19}}</td><td>{{Status_OB.19}}</td></tr>
+              <tr><td>{{name_OB.35}}</td><td>{{Ip_OB.20}}</td><td>{{Status_OB.20}}</td></tr>
+              <tr><td>{{name_OB.33}}</td><td>{{Ip_OB.18}}</td><td>{{Status_OB.18}}</td></tr>
+              <tr><td>{{name_OB.37}}</td><td>{{Ip_OB.22}}</td><td>{{Status_OB.22}}</td></tr>
+              <tr><td>{{name_OB.38}}</td><td>{{Ip_OB.23}}</td><td>{{Status_OB.23}}</td></tr>
+              <tr><td>{{name_OB.36}}</td><td>{{Ip_OB.21}}</td><td>{{Status_OB.21}}</td></tr>
+              <tr><td>{{name_OB.40}}</td><td>{{Ip_OB.25}}</td><td>{{Status_OB.25}}</td></tr>
+              <tr><td>{{name_OB.41}}</td><td>{{Ip_OB.26}}</td><td>{{Status_OB.26}}</td></tr>
+              <tr><td>{{name_OB.39}}</td><td>{{Ip_OB.24}}</td><td>{{Status_OB.24}}</td></tr>
+              <tr><td>{{name_OB.43}}</td><td>{{Ip_OB.28}}</td><td>{{Status_OB.28}}</td></tr>
+              <tr><td>{{name_OB.44}}</td><td>{{Ip_OB.29}}</td><td>{{Status_OB.29}}</td></tr>
+              <tr><td>{{name_OB.42}}</td><td>{{Ip_OB.27}}</td><td>{{Status_OB.27}}</td></tr>
         </tbody>
       </table>
     </div>
@@ -131,19 +152,25 @@
             <th style="width:40%">Status</th>
           </tr>
         </thead> 
-        <tbody>
-              <tr><td>{{name_BC.0}}</td><td>{{Ip_BC.0}}</td><td>{{Status_BC.0}}</td></tr> 
+        <tbody id=mytable>
               <tr><td>{{name_BC.1}}</td><td>{{Ip_BC.1}}</td><td>{{Status_BC.1}}</td></tr> 
               <tr><td>{{name_BC.2}}</td><td>{{Ip_BC.2}}</td><td>{{Status_BC.2}}</td></tr> 
-              <tr><td>{{name_BC.3}}</td><td>{{Ip_BC.3}}</td><td>{{Status_BC.3}}</td></tr> 
+              <tr><td>{{name_BC.0}}</td><td>{{Ip_BC.0}}</td><td>{{Status_BC.0}}</td></tr> 
               <tr><td>{{name_BC.4}}</td><td>{{Ip_BC.4}}</td><td>{{Status_BC.4}}</td></tr>
               <tr><td>{{name_BC.5}}</td><td>{{Ip_BC.5}}</td><td>{{Status_BC.5}}</td></tr>
-              <tr><td>{{name_BC.6}}</td><td>{{Ip_BC.6}}</td><td>{{Status_BC.6}}</td></tr>
+              <tr><td>{{name_BC.3}}</td><td>{{Ip_BC.3}}</td><td>{{Status_BC.3}}</td></tr> 
               <tr><td>{{name_BC.7}}</td><td>{{Ip_BC.7}}</td><td>{{Status_BC.7}}</td></tr>
               <tr><td>{{name_BC.8}}</td><td>{{Ip_BC.8}}</td><td>{{Status_BC.8}}</td></tr>
-              <tr><td>{{name_BC.9}}</td><td>{{Ip_BC.9}}</td><td>{{Status_BC.9}}</td></tr>
+              <tr><td>{{name_BC.6}}</td><td>{{Ip_BC.6}}</td><td>{{Status_BC.6}}</td></tr>
               <tr><td>{{name_BC.10}}</td><td>{{Ip_BC.10}}</td><td>{{Status_BC.10}}</td></tr>
               <tr><td>{{name_BC.11}}</td><td>{{Ip_BC.11}}</td><td>{{Status_BC.11}}</td></tr>
+              <tr><td>{{name_BC.9}}</td><td>{{Ip_BC.9}}</td><td>{{Status_BC.9}}</td></tr>
+              <tr><td>{{name_BC.13}}</td><td>{{Ip_BC.13}}</td><td>{{Status_BC.13}}</td></tr>
+              <tr><td>{{name_BC.14}}</td><td>{{Ip_BC.14}}</td><td>{{Status_BC.14}}</td></tr>
+              <tr><td>{{name_BC.12}}</td><td>{{Ip_BC.12}}</td><td>{{Status_BC.12}}</td></tr>
+              <tr><td>{{name_BC.16}}</td><td>{{Ip_BC.16}}</td><td>{{Status_BC.16}}</td></tr>
+              <tr><td>{{name_BC.17}}</td><td>{{Ip_BC.17}}</td><td>{{Status_BC.17}}</td></tr>
+              <tr><td>{{name_BC.15}}</td><td>{{Ip_BC.15}}</td><td>{{Status_BC.15}}</td></tr>
         </tbody>
       </table>
     </div>
@@ -204,6 +231,28 @@
           $(this).parent().parent().parent().hide();
         })
       });
+    </script>
+  <script type="text/javascript">
+        var $tr=document.getElementById("mytable").getElementsByTagName("tr");
+        var $tr_oberon=document.getElementById("mytable_oberon").getElementsByTagName("tr");
+        var length=$tr.length;
+        var length_oberon=$tr_oberon.length;
+        for(var i=0;i<length;i++){
+            var j=parseInt(i/3);
+            if(j%2==0){
+                $tr[i].style.backgroundColor="#ddffcc";
+            }else{
+                $tr[i].style.backgroundColor="#e6e6ff";
+            }
+        }
+        for(var i=0;i<length_oberon;i++){
+            var j=parseInt(i/3);
+            if(j%2==0){
+                $tr_oberon[i].style.backgroundColor="#ddffcc";
+            }else{
+                $tr_oberon[i].style.backgroundColor="#e6e6ff";
+            }
+        }
     </script>
  </body>  
 </html> 

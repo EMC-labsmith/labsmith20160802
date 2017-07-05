@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm /home/guokun/workspace/webui/labsmith/mail.log
+rm /home/joe/labsmith_backup/mail.log

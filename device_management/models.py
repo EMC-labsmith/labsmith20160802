@@ -11,6 +11,7 @@ class Device(models.Model):
     owner = models.ForeignKey(User,related_name="owner_user",blank=True,null=True)
     wanted = models.ForeignKey(User,related_name="wanted_user",blank=True,null=True)
     user = models.CharField(max_length=70,blank=True,null=True)
+    isalive = models.BooleanField(default=True)
     info = models.CharField(max_length=1000,blank=True,null=True)
     model = models.CharField(max_length=300,blank=True,null=True)
     port = models.CharField(max_length=30,blank=True,null=True)

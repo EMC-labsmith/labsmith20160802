@@ -18,6 +18,7 @@ urlpatterns = [
     # url(r'^password/reset/$', views.reset, name="reset"),
     url(r'^mainLog/(?P<id>[0-9]+)/$', views.mainLog, name="mainLog"),
     url(r'^pxeResult/(?P<id>[0-9]+)/$',views.pxeResult, name = "pxeResult"),
+    url(r'^pxeResultFile/(?P<id>[0-9]+)/$',views.pxeResultFile, name = "pxeResultFile"),
     url(r'^statusResult/(?P<id>[0-9]+)/$',views.statusResult, name = "statusResult"),
     # url(r'^statusResult/(?P<id>[0-9]+)/$',views.statusResult, name = "statusResult"),
 	url(r'^statusResult/$',views.statusResult, name = "statusResult"),

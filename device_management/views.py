@@ -23,15 +23,27 @@ def hello(req):
         tabOption = 'Oberon'
     print "tabOption: " + tabOption
     msg=""
+
     if 'id' in req.GET and 'action' in req.GET and req.GET['id']:
+        transfer_name = re.compile(r'[a-zA-Z]')
+        transfer_name = transfer_name.match(req.GET['action'])
         if req.GET['action']=='0':
             msg = reserve_dev(int(req.GET['id']), currentuser)
         elif req.GET['action']=='1':
             msg = want_dev(int(req.GET['id']), currentuser)
         elif req.GET['action']=='2':
             msg = release_dev(int(req.GET['id']), currentuser)
+        elif req.GET['action']==transfer_name:
+            transfer_name=req.POST['transfer_owner']
+            msg = release_dev(int(req.GET['id']), currentuser)
+            msg = reserve_dev(int(req.GET['id']), transfer_name)
         else:
             msg = "error"
+    users = []
+    users1 = User.objects.order_by("first_name")
+    for user in users1:
+        if currentuser.username != '' and user.get_full_name() and user.get_full_name() != currentuser.get_full_name():#admin has no full name
+            users.append(user.get_full_name())
 
     devices1 = Device.objects.filter(name__startswith="OB-S").order_by("name")
     devices2 = Device.objects.filter(name__startswith="BC").order_by("name")
@@ -42,15 +54,16 @@ def hello(req):
     devices7 = Device.objects.filter(name__startswith="H-0")
     devices8 = Device.objects.filter(name__startswith="SW")
     devices9 = Device.objects.filter(name__startswith="OB DAE").order_by("name")
-    devices = [devices1,devices2,devices3,devices4,devices9]
-    for i in range(-1, 5):
+    devices10 = Device.objects.filter(name__startswith="KVM").order_by("name")|Device.objects.filter(name__startswith="IO-IP").order_by("name")
+    devices = [devices1,devices2,devices3,devices4,devices9,devices10]
+    for i in range(-1, 6):
         for device in devices[i]:
             if device.owner:
                 print device.owner
                 usagelog = UsageLog.objects.get(machineName=device.name, port=device.port,
                                                 user=device.owner.get_full_name(), isUse='f')
                 if usagelog:
-                    device.holdingTime = (timezone.now() - usagelog.reserveTimestamp).days
+                    device.holdingTime = (timezone.now() - usagelog.reserveTimestamp).days + 1
                     device.save()
             else:
                 device.holdingTime = ''
@@ -65,12 +78,16 @@ def hello(req):
                'devices7': devices7,
                'devices8': devices8,
                'devices9': devices9,
+               'devices10': devices10,
+               'users': users,
                'currentuser' : currentuser,
                'tab' : tabOption,
                'msg': msg,
                # 'deviceusers':deviceusers,
     }
     #return render_to_response('hello.html',{'devices':devices})
+
+
     return render(req, 'hello.html', context)
 
 
@@ -82,12 +99,23 @@ def result(req):
         tabOption = 'Oberon'
     currentuser = req.user
     if 'id' in req.GET and 'action' in req.GET and req.GET['id']:
+        transfer_name = re.compile(r'[a-zA-Z]')
         if req.GET['action']=='0':
             msg = reserve_dev(int(req.GET['id']), currentuser)
         elif req.GET['action']=='1':
             msg = want_dev(int(req.GET['id']), currentuser)
         elif req.GET['action']=='2':
             msg = release_dev(int(req.GET['id']), currentuser)
+        elif transfer_name.match(req.GET['action'])!=None:
+            msg = release_dev(int(req.GET['id']), currentuser)
+            transfer_owner = req.GET['action']
+            users1 = User.objects.order_by("username")
+            for user in users1:
+                users = []
+                users.append(user.get_full_name())
+                if transfer_owner in users:
+                    msg = reserve_dev(int(req.GET['id']), user)
+                    break
         else:
             msg = "error"
         #msg="The button is %s and action is %s " % (req.GET['id'],req.GET['action'])
@@ -222,26 +250,26 @@ def pxe(req,id):
     return render(req, "pxe.html", context)
 
 def pxeResult(req,id):
+    context = {'id':id}
+    return render(req, "pxeResult.html",context)
+
+def pxeResultFile(req,id):
 
     device = Device.objects.get(id=id)
     # msg = " %s Done!" % device.name
 
     cmdstr = "/root/PXE/pxetool_web1 %s %s %s %s %s %s %s %s %s"  % (device.name, device.spa_ip, device.spb_ip, device.spa_mac, device.spb_mac, device.platform_type,device.pxeFilePath, device.bmc_spa_ip,device.bmc_spb_ip)
-    
+
     f = os.popen(cmdstr)
     res = f.read()
-    print res
+    #print res
 
     # res = "OK! sdffffffffffff sdfffffffffffffffffegggggggggg sefffffffffffffffffgegggeg  gegg"
 
     result = res.split('!')
 
-    context = {#'msg':msg,
-                # 'res': res 
-                'result': result}
-    
-    return render(req, "pxeResult.html",context)
-
+    context = {'result': result}
+    return render(req, "pxeResultFile.html",context)
 
 def GetFileList(FindPath,FlagStr=[]):
     FileList = []
@@ -342,9 +370,6 @@ def reserve_dev(id, currentuser):
         if 'OB-S' in re.findall(r'OB-S', device.name) or 'BC' in re.findall(r'BC', device.name)or 'JF' in re.findall(r'JF', device.name)or 'BR' in re.findall(r'BR', device.name):
             subprocess.call(["/home/joe/labsmith_backup/reservemail.sh", machine, mailto])
 
-    # mailto = device.owner.email
-    # subprocess.call(["/home/joe/labsmith_all/labsmith1209Backup/noticemail.sh",mailto])           
-    # print "test"
         if port:
             msg = "%s %s is owned by %s now." % (machine, port, curUser)
         else:
@@ -396,7 +421,7 @@ def release_dev(id, currentuser):
                         Status_spb = item[0] + ': ' + item[2] + ' ' + item[3]
                 if Status_spa != '' and Status_spb != '':
                     status = Status_spa + '\n' + ' ' + Status_spb
-            subprocess.call(["/home/joe/labsmith_backup/releasemailtoowner.sh", machine, port, mailtoowner, status])
+            subprocess.call(["/home/joe/labsmith_backup/releasemailtoowner.sh", machine, mailtoowner, status])
 
         # subject = "[Labsmith]%s is released." % ( device.name)
         # html_msg = r'You can reserve it now.<br><br><a href="http://10.62.34.99:8010/labsmith/">http://10.62.34.99:8010/labsmith/</a>'

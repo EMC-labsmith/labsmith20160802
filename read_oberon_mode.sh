@@ -84,6 +84,7 @@ echo "waiting......."
 
                do
                 { echo $myline |grep "OB" > /dev/null || continue
+		echo "*********"
                 machinespec=$(echo $myline | cut -d ' ' -f 1)
                 machinespec_spa=$machinespec"-spa"
                 machinespec_spb=$machinespec"-spb"
@@ -104,9 +105,9 @@ echo "waiting......."
                                         printf "%-20s %-20s %-20s\n" $machinespec_spb $ip_spb  "ping fail" >> /home/mode.txt
                                 fi;
                 } &
-                wait; } > /dev/null &
+                wait; } > /dev/null & 
             done < machine_info.txt
-            wait
+           wait
                     printf "%s\n" "-----------------------------------------------------"
                     printf "%-20s  %-20s %-20s\n" "MachineSpec" "Ip" "Status"
                     printf "%s\n" "-----------------------------------------------------"

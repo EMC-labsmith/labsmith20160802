@@ -50,6 +50,8 @@ def register(req):
             errors.append("Username used.")
         if not req.POST.get('email', ''):
             errors.append("Enter e-mail.")
+        if User.objects.filter(email__iexact=req.POST['email']):
+            errors.append("Email address used.")
         if not req.POST.get('pwd1', ''):
             errors.append("Enter password.")
         if not req.POST.get('pwd2', ''):
@@ -89,27 +91,34 @@ def reset(req):
     errors= []
     
     if req.method== "POST":
-        if not req.POST.get('inputUserName', ''):
-            errors.append("Enter username.")
-        elif not req.POST.get('inputEmailAddress', ''):
+        #if not req.POST.get('inputUserName', ''):
+            #errors.append("Enter username.")
+        if not req.POST.get('inputEmailAddress', ''):
             errors.append("Enter e-mail.")
-        elif not User.objects.filter(username__exact=req.POST['inputUserName']):
-            errors.append("Username not exist.")
-        elif not User.objects.filter(email__exact=req.POST['inputEmailAddress']):
-            errors.append("email not exist.")
-        elif not User.objects.filter(username__exact=req.POST['inputUserName'],email__exact=req.POST['inputEmailAddress']):
-            errors.append("Username or email does not match, please input again.")
+        #elif not User.objects.filter(username__exact=req.POST['inputUserName']):
+            #errors.append("Username not exist.")
+        elif not User.objects.filter(email__iexact=req.POST['inputEmailAddress']):
+            errors.append("Email not exist!")
+        #elif not User.objects.filter(username__exact=req.POST['inputUserName'],email__exact=req.POST['inputEmailAddress']):
+            #errors.append("Username or email does not match, please input again.")
 
         if not errors:
-            user = User.objects.get(username = req.POST["inputUserName"])
+            #users = User.objects.order_by("first_name")
+            #user = User.objects.get(email=req.POST['inputEmailAddress'])
+            user = User.objects.get(email__iexact=req.POST['inputEmailAddress'])
+            #for user1 in users:#username
+                #print user1
+            print user
+                #if user1 == user.username:
             password = User.objects.make_random_password()
             print password
-           
+                    #break
             user.set_password(password)
             user.save()
             
-            usrName = req.POST["inputUserName"]
-            mailto=req.POST["inputEmailAddress"]
+            usrName = user.username
+            #mailto=req.POST["inputEmailAddress"]
+            mailto = user.email
             print mailto
             
             # subject = "[Labsmith] New password is sent to you " 
