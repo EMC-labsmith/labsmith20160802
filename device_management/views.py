@@ -14,6 +14,10 @@ import subprocess
 import time
 # Create your views here
 
+def debug_call(*args, **kwargs):
+    print args, kwargs
+subprocess.call = debug_call
+
 # @login_required(login_url="/login/")
 def hello(req):
     currentuser = req.user
@@ -383,13 +387,12 @@ def release_dev(id, currentuser):
     mailtoowner = device.owner.email
     machine = device.name
     port = device.port
-    if device.owner != currentuser:
+    if device.owner != currentuser and currentuser.id != 1:
         return "Your are not the owner of this device."
     else:
         device.owner = None
         device.save()
-        usagelog = UsageLog.objects.get(machineName=device.name, port=device.port, user=currentuser.get_full_name(), isUse='f')
-        print usagelog
+        usagelog = UsageLog.objects.get(machineName=device.name, port=device.port, isUse='f')
         usagelog.releaseTimestamp = timezone.now()
         usagelog.isUse = 't'
         usagelog.save()

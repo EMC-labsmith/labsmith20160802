@@ -300,7 +300,11 @@
                     <a href="result?id={{device.id}}&action=2&tab=Oberon" style="text-decoration: none"><button class="btn btn-primary btn-block" type="button">release</button></a>
                     <!--a href="result?id={{device.id}}&action=2" style="text-decoration: none"><button class="btn btn-primary btn-block" type="button">release</button></a-->
                   {% else %}
+                      {% if currentuser.id == 1 %}
+                    <a href="result?id={{device.id}}&action=2&tab=Oberon" style="text-decoration: none"><button class="btn btn-primary btn-block" type="button">release</button></a>
+                      {% else %}
                     <a href="result?id={{device.id}}&action=1&tab=Oberon" style="text-decoration: none"><button class="btn btn-warning btn-block" type="button">want</button></a>
+                      {% endif %}
                   {% endifequal %}
                 {% else %}
                    <a href="result?id={{device.id}}&action=0&tab=Oberon" style="text-decoration: none"><button class="btn btn-success btn-block" type="button">reserve</button></a>
